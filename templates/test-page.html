@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Użytkownika</title>
+</head>
+<body>
+    <h2>Witaj w panelu użytkownika!</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p style="color: green;">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <blockquote>
+        <strong>Zalogowano jako:</strong><br>
+        Imię i nazwisko: {{ user.first_name }} {{ user.last_name }}<br>
+        Adres Email: {{ user.email }}
+    </blockquote>
+
+    <nav style="margin-top: 20px;">
+        <a href="/change-password">Zmień hasło</a> | 
+        <a href="/logout" style="color: red;">Wyloguj się</a>
+    </nav>
+</body>
+</html>
